@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/drinks")
@@ -32,14 +33,19 @@ public class DrinkController {
         return ResponseEntity.created(uri).build();
     }
 
+    @GetMapping
+    public ResponseEntity<Page<DrinkDto>> findAll(@PageableDefault(sort = "description")Pageable page) {
+        return ResponseEntity.ok(service.findAll(page));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<DrinkDto> findById(@PathVariable Long id) {
         return ResponseEntity.ok(new DrinkDto(service.findById(id)));
     }
 
-    @GetMapping
-    public ResponseEntity<Page<Drink>> findAll(@PageableDefault(sort = "description")Pageable page) {
-        return ResponseEntity.ok(service.findAll(page));
+    @GetMapping("/description/{description}")
+    public ResponseEntity<List<DrinkDto>> findByDescription(@PathVariable String description) {
+        return ResponseEntity.ok(service.findByDescription(description));
     }
 
     @PatchMapping("/{id}")

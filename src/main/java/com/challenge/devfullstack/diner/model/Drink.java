@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "drinks")
@@ -25,6 +26,8 @@ public class Drink {
     private BigDecimal unityPrice;
     @Column(name = "have_sugar", nullable = false)
     private Boolean haveSugar;
+    @ManyToMany(mappedBy = "drinks")
+    private List<Order> orders;
     @Column(name= "deleted_at")
     private LocalDateTime deletedAt;
 

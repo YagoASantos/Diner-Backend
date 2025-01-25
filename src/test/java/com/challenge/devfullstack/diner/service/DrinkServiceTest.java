@@ -70,7 +70,7 @@ class DrinkServiceTest {
     void shouldSetChangesCorrectly() {
         given(repository.findById(mockedDrink.getId())).willReturn(Optional.ofNullable(mockedDrink));
 
-        DrinkDto dto = new DrinkDto("Description changed", new BigDecimal("20.00"), false);
+        DrinkDto dto = new DrinkDto(null, "Description changed", new BigDecimal("20.00"), false);
         service.update(mockedDrink.getId(), dto);
         then(repository).should().save(drinkArgumentCaptor.capture());
         Drink updatedDrink = drinkArgumentCaptor.getValue();

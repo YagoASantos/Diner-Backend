@@ -2,6 +2,7 @@ package com.challenge.devfullstack.diner.service;
 
 import com.challenge.devfullstack.diner.model.Ingredient;
 import com.challenge.devfullstack.diner.repository.IngredientRepository;
+import com.challenge.devfullstack.diner.util.dto.HamburgerDto;
 import com.challenge.devfullstack.diner.util.dto.IngredientDto;
 import com.challenge.devfullstack.diner.util.dto.PostIngredientDto;
 import jakarta.persistence.EntityNotFoundException;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class IngredientService {
@@ -24,8 +27,13 @@ public class IngredientService {
         return repository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
-    public Page<Ingredient> findAll(Pageable page) {
-        return repository.findAllByDeletedAtNull(page);
+    public List<IngredientDto> findByDescription(String description) {
+        return repository.findAllByDeletedAtNullAndDescriptionContainingIgnoreCase(description).stream()
+                .map(IngredientDto::new).toList();
+    }
+
+    public Page<IngredientDto> findAll(Pageable page) {
+        return repository.findAllByDeletedAtNull(page).map(IngredientDto::new);
     }
 
     public Ingredient update(Long id, IngredientDto dto) {

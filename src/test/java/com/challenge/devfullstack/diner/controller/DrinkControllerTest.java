@@ -3,6 +3,7 @@ package com.challenge.devfullstack.diner.controller;
 import com.challenge.devfullstack.diner.model.Drink;
 import com.challenge.devfullstack.diner.service.DrinkService;
 import com.challenge.devfullstack.diner.util.dto.DrinkDto;
+import com.challenge.devfullstack.diner.util.dto.PostDrinkDto;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,11 +40,11 @@ class DrinkControllerTest {
 
     private static ObjectMapper mapper;
 
-    private static String DEFAULT_URL_TEMPLATE = "/api/drinks";
+    private static final String DEFAULT_URL_TEMPLATE = "/drinks";
 
     @BeforeAll
     static void setUp() {
-        mockedDrink = new Drink(1L, "Sprite 2L", new BigDecimal("12.00"), false, null);
+        mockedDrink = new Drink(1L, "Sprite 2L", new BigDecimal("12.00"), false, null, null);
         mapper = new ObjectMapper();
     }
 
@@ -84,7 +85,7 @@ class DrinkControllerTest {
         var response = mvc.perform(
                 post(DEFAULT_URL_TEMPLATE)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(mapper.writeValueAsString(new DrinkDto(null, null, null)))
+                        .content(mapper.writeValueAsString(new PostDrinkDto(null, null, null)))
         ).andReturn().getResponse();
         assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatus());
         System.out.println(response.getContentAsString());

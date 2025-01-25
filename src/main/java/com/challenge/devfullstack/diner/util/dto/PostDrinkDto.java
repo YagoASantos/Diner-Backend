@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 
 public record PostDrinkDto(
-        @NotBlank(message = "Preencha o campo descrição.")
-        @Size(min = 3, message = "Quant. mínima de caracteres não atingido(3).")
+        @NotBlank(message = ErrorFieldsMessages.FIELD_BLANK + "descrição.")
+        @Size(min = 3, message = ErrorFieldsMessages.MIN_SIZE)
         String description,
         @NotNull(message = "Preencha o campo preço.")
         BigDecimal price,

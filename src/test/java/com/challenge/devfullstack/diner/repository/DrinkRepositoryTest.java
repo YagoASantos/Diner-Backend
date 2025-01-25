@@ -28,16 +28,14 @@ class DrinkRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        mockedDrink = new Drink(null, "Coca-Cola lata 350ml", new BigDecimal("5.00"), true, null);
+        mockedDrink = new Drink(null, "Coca-Cola lata 350ml", new BigDecimal("5.00"), true, null, null);
         mockedDrink = repository.save(mockedDrink);
     }
-
 
     @Test
     void shouldSaveDrinkCorrectlyAndReturnById() {
 
         assertEquals(mockedDrink, repository.findById(mockedDrink.getId()).get());
-        System.out.println(mockedDrink);
     }
 
     @Test

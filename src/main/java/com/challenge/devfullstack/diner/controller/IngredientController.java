@@ -2,6 +2,7 @@ package com.challenge.devfullstack.diner.controller;
 
 import com.challenge.devfullstack.diner.model.Ingredient;
 import com.challenge.devfullstack.diner.service.IngredientService;
+import com.challenge.devfullstack.diner.util.dto.HamburgerDto;
 import com.challenge.devfullstack.diner.util.dto.IngredientDto;
 import com.challenge.devfullstack.diner.util.dto.PostIngredientDto;
 import jakarta.transaction.Transactional;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/ingredients")
@@ -31,14 +33,19 @@ public class IngredientController {
         return ResponseEntity.created(uri).build();
     }
 
+    @GetMapping
+    public ResponseEntity<Page<IngredientDto>> findAll(@PageableDefault(sort = "description")Pageable page) {
+        return ResponseEntity.ok(service.findAll(page));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<IngredientDto> findById(@PathVariable Long id) {
         return ResponseEntity.ok(new IngredientDto(service.findById(id)));
     }
 
-    @GetMapping
-    public ResponseEntity<Page<Ingredient>> findAll(@PageableDefault(sort = "description")Pageable page) {
-        return ResponseEntity.ok(service.findAll(page));
+    @GetMapping("/description/{description}")
+    public ResponseEntity<List<IngredientDto>> findByDescription(@PathVariable String description) {
+        return ResponseEntity.ok(service.findByDescription(description));
     }
 
     @PatchMapping("/{id}")

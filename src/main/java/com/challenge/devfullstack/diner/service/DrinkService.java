@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DrinkService {
 
@@ -24,8 +26,13 @@ public class DrinkService {
         return repository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
-    public Page<Drink> findAll(Pageable page) {
-        return repository.findAllByDeletedAtNull(page);
+    public List<DrinkDto> findByDescription(String description) {
+        return repository.findAllByDeletedAtNullAndDescriptionContainingIgnoreCase(description).stream()
+                .map(DrinkDto::new).toList();
+    }
+
+    public Page<DrinkDto> findAll(Pageable page) {
+        return repository.findAllByDeletedAtNull(page).map(DrinkDto::new);
     }
 
     public Drink update(Long id, DrinkDto dto) {
@@ -41,6 +48,4 @@ public class DrinkService {
             repository.save(deletedDrink);
         }
     }
-
-
 }
