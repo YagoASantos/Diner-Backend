@@ -1,0 +1,1 @@
+ALTER TABLE drinks ADD COLUMN deleted_at timestamp;
