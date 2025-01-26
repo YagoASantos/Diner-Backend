@@ -1,6 +1,6 @@
-package com.challenge.devfullstack.diner.util.dto;
+package com.challenge.devfullstack.diner.util.dto.drink;
 
-import com.challenge.devfullstack.diner.model.Drink;
+import com.challenge.devfullstack.diner.model.drink.Drink;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;

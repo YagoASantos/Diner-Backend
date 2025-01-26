@@ -1,5 +1,6 @@
-package com.challenge.devfullstack.diner.util.dto;
+package com.challenge.devfullstack.diner.util.dto.hamburger;
 
+import com.challenge.devfullstack.diner.util.dto.ErrorFieldsMessages;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;

@@ -1,13 +1,10 @@
 package com.challenge.devfullstack.diner.controller;
 
-import com.challenge.devfullstack.diner.model.Drink;
+import com.challenge.devfullstack.diner.model.drink.Drink;
 import com.challenge.devfullstack.diner.service.DrinkService;
-import com.challenge.devfullstack.diner.util.dto.DrinkDto;
-import com.challenge.devfullstack.diner.util.dto.PostDrinkDto;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.challenge.devfullstack.diner.util.dto.drink.DrinkDto;
+import com.challenge.devfullstack.diner.util.dto.drink.PostDrinkDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

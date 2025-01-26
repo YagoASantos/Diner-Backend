@@ -3,17 +3,15 @@ package com.challenge.devfullstack.diner.service;
 import com.challenge.devfullstack.diner.model.Hamburger;
 import com.challenge.devfullstack.diner.model.Ingredient;
 import com.challenge.devfullstack.diner.repository.HamburgerRepository;
-import com.challenge.devfullstack.diner.util.dto.HamburgerDto;
-import com.challenge.devfullstack.diner.util.dto.PatchHamburgerDto;
-import com.challenge.devfullstack.diner.util.dto.PostHamburgerDto;
+import com.challenge.devfullstack.diner.util.dto.hamburger.HamburgerDto;
+import com.challenge.devfullstack.diner.util.dto.hamburger.PatchHamburgerDto;
+import com.challenge.devfullstack.diner.util.dto.hamburger.PostHamburgerDto;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

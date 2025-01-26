@@ -1,6 +1,6 @@
 package com.challenge.devfullstack.diner.repository;
 
-import com.challenge.devfullstack.diner.model.Drink;
+import com.challenge.devfullstack.diner.model.drink.Drink;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

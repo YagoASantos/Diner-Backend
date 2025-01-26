@@ -1,9 +1,9 @@
 package com.challenge.devfullstack.diner.service;
 
-import com.challenge.devfullstack.diner.model.Drink;
+import com.challenge.devfullstack.diner.model.drink.Drink;
 import com.challenge.devfullstack.diner.repository.DrinkRepository;
-import com.challenge.devfullstack.diner.util.dto.DrinkDto;
-import com.challenge.devfullstack.diner.util.dto.PostDrinkDto;
+import com.challenge.devfullstack.diner.util.dto.drink.DrinkDto;
+import com.challenge.devfullstack.diner.util.dto.drink.PostDrinkDto;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -2,9 +2,8 @@ package com.challenge.devfullstack.diner.controller;
 
 import com.challenge.devfullstack.diner.model.Ingredient;
 import com.challenge.devfullstack.diner.service.IngredientService;
-import com.challenge.devfullstack.diner.util.dto.HamburgerDto;
-import com.challenge.devfullstack.diner.util.dto.IngredientDto;
-import com.challenge.devfullstack.diner.util.dto.PostIngredientDto;
+import com.challenge.devfullstack.diner.util.dto.ingredient.IngredientDto;
+import com.challenge.devfullstack.diner.util.dto.ingredient.PostIngredientDto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

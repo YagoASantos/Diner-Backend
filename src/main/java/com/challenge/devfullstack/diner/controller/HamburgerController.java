@@ -2,9 +2,9 @@ package com.challenge.devfullstack.diner.controller;
 
 import com.challenge.devfullstack.diner.model.Hamburger;
 import com.challenge.devfullstack.diner.service.HamburgerService;
-import com.challenge.devfullstack.diner.util.dto.HamburgerDto;
-import com.challenge.devfullstack.diner.util.dto.PatchHamburgerDto;
-import com.challenge.devfullstack.diner.util.dto.PostHamburgerDto;
+import com.challenge.devfullstack.diner.util.dto.hamburger.HamburgerDto;
+import com.challenge.devfullstack.diner.util.dto.hamburger.PatchHamburgerDto;
+import com.challenge.devfullstack.diner.util.dto.hamburger.PostHamburgerDto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ public class HamburgerController {
 
     @PatchMapping("/{id}")
     @Transactional
-    public ResponseEntity<HamburgerDto> update(@PathVariable Long id, @RequestBody PatchHamburgerDto dto) {
+    public ResponseEntity<HamburgerDto> update(@PathVariable Long id, @RequestBody @Valid PatchHamburgerDto dto) {
         return ResponseEntity.ok(new HamburgerDto(service.update(id, dto)));
     }
 

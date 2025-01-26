@@ -1,7 +1,8 @@
 package com.challenge.devfullstack.diner.model;
 
-import com.challenge.devfullstack.diner.util.dto.PatchHamburgerDto;
-import com.challenge.devfullstack.diner.util.dto.PostHamburgerDto;
+import com.challenge.devfullstack.diner.model.order.OrderHamburger;
+import com.challenge.devfullstack.diner.util.dto.hamburger.PatchHamburgerDto;
+import com.challenge.devfullstack.diner.util.dto.hamburger.PostHamburgerDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,8 +32,8 @@ public class Hamburger {
             joinColumns = @JoinColumn(name = "id_hamburguer"),
             inverseJoinColumns = @JoinColumn(name = "id_ingredient"))
     private List<Ingredient> ingredients;
-    @ManyToMany(mappedBy = "hamburgers", fetch = FetchType.LAZY)
-    private List<Order> orders;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hamburger")
+    private List<OrderHamburger> orders;
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 

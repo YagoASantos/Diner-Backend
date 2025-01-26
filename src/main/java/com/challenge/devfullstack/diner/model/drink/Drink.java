@@ -1,7 +1,8 @@
-package com.challenge.devfullstack.diner.model;
+package com.challenge.devfullstack.diner.model.drink;
 
-import com.challenge.devfullstack.diner.util.dto.DrinkDto;
-import com.challenge.devfullstack.diner.util.dto.PostDrinkDto;
+import com.challenge.devfullstack.diner.model.order.OrderDrink;
+import com.challenge.devfullstack.diner.util.dto.drink.DrinkDto;
+import com.challenge.devfullstack.diner.util.dto.drink.PostDrinkDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,8 +27,8 @@ public class Drink {
     private BigDecimal unityPrice;
     @Column(name = "have_sugar", nullable = false)
     private Boolean haveSugar;
-    @ManyToMany(mappedBy = "drinks")
-    private List<Order> orders;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "drink")
+    private List<OrderDrink> orders;
     @Column(name= "deleted_at")
     private LocalDateTime deletedAt;
 

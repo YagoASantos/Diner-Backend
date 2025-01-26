@@ -1,7 +1,7 @@
 package com.challenge.devfullstack.diner.model;
 
-import com.challenge.devfullstack.diner.util.dto.IngredientDto;
-import com.challenge.devfullstack.diner.util.dto.PostIngredientDto;
+import com.challenge.devfullstack.diner.util.dto.ingredient.IngredientDto;
+import com.challenge.devfullstack.diner.util.dto.ingredient.PostIngredientDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

@@ -1,6 +1,7 @@
-package com.challenge.devfullstack.diner.util.dto;
+package com.challenge.devfullstack.diner.util.dto.hamburger;
 
 import com.challenge.devfullstack.diner.model.Hamburger;
+import com.challenge.devfullstack.diner.util.dto.ingredient.IngredientDto;
 
 import java.math.BigDecimal;
 import java.util.List;

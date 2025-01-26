@@ -1,12 +1,11 @@
 package com.challenge.devfullstack.diner.controller;
 
-import com.challenge.devfullstack.diner.model.Drink;
+import com.challenge.devfullstack.diner.model.drink.Drink;
 import com.challenge.devfullstack.diner.service.DrinkService;
-import com.challenge.devfullstack.diner.util.dto.DrinkDto;
-import com.challenge.devfullstack.diner.util.dto.PostDrinkDto;
+import com.challenge.devfullstack.diner.util.dto.drink.DrinkDto;
+import com.challenge.devfullstack.diner.util.dto.drink.PostDrinkDto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

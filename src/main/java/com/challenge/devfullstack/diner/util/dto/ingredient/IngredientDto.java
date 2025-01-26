@@ -1,4 +1,4 @@
-package com.challenge.devfullstack.diner.util.dto;
+package com.challenge.devfullstack.diner.util.dto.ingredient;
 
 import com.challenge.devfullstack.diner.model.Ingredient;
 import jakarta.validation.constraints.Size;
