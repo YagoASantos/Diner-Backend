@@ -7,6 +7,9 @@ import com.challenge.devfullstack.diner.util.dto.PostClientDto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,6 +30,11 @@ public class ClientController {
         Client client = service.create(dto);
         URI uri = uriBuilder.path("/clients/{id}").buildAndExpand(client.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<ClientDto>> findAll(@PageableDefault(sort = "name")Pageable page) {
+        return ResponseEntity.ok(service.findAll(page));
     }
 
     @GetMapping("/{id}")

@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     Page<Ingredient> findAllByDeletedAtNull(Pageable page);
-    List<Ingredient> findAllByDeletedAtNullAndDescriptionContainingIgnoreCase(String description);
+    Page<Ingredient> findAllByDeletedAtNullAndDescriptionContainingIgnoreCase(String description, Pageable page);
 }

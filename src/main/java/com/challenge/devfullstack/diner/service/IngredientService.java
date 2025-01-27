@@ -26,9 +26,8 @@ public class IngredientService {
         return repository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
-    public List<IngredientDto> findByDescription(String description) {
-        return repository.findAllByDeletedAtNullAndDescriptionContainingIgnoreCase(description).stream()
-                .map(IngredientDto::new).toList();
+    public Page<IngredientDto> findByDescription(String description, Pageable page) {
+        return repository.findAllByDeletedAtNullAndDescriptionContainingIgnoreCase(description, page).map(IngredientDto::new);
     }
 
     public Page<IngredientDto> findAll(Pageable page) {

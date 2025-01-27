@@ -6,6 +6,8 @@ import com.challenge.devfullstack.diner.util.dto.ClientDto;
 import com.challenge.devfullstack.diner.util.dto.PostClientDto;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,5 +35,9 @@ public class ClientService {
     public void delete(Long id) {
         Client client = findById(id);
         client.delete();
+    }
+
+    public Page<ClientDto> findAll(Pageable page) {
+        return repository.findAllByDeletedAtNull(page).map(ClientDto::new);
     }
 }

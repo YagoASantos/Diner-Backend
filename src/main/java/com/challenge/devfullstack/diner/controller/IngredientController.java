@@ -43,8 +43,10 @@ public class IngredientController {
     }
 
     @GetMapping("/description/{description}")
-    public ResponseEntity<List<IngredientDto>> findByDescription(@PathVariable String description) {
-        return ResponseEntity.ok(service.findByDescription(description));
+    public ResponseEntity<Page<IngredientDto>> findByDescription(@PathVariable String description, @PageableDefault(
+            sort = "description"
+    )Pageable page) {
+        return ResponseEntity.ok(service.findByDescription(description, page));
     }
 
     @PatchMapping("/{id}")
