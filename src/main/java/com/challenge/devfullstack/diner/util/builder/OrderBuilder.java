@@ -35,8 +35,10 @@ public class OrderBuilder {
     }
 
     public OrderBuilder setObservations(List<Observation> observations) {
-        observations.forEach(observation -> observation.setOrder(this.order));
-        this.order.setObservations(observations);
+        if(observations != null) {
+            observations.forEach(observation -> observation.setOrder(this.order));
+            this.order.setObservations(observations);
+        }
         return this;
     }
 

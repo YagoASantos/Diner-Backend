@@ -11,12 +11,11 @@ import jakarta.validation.constraints.NotNull;
 public record PostOrderDto(
         @NotBlank(message = ErrorFieldsMessages.FIELD_BLANK + "descrição.")
         String description,
-        Long clientId,
+        Long client,
         List<ItemAndQuantityDto> hamburgers,
         List<ItemAndQuantityDto> drinks,
         List<ObservationDto> observations,
         @NotNull(message = ErrorFieldsMessages.FIELD_BLANK + "data do pedido.")
-        @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
         String orderDate
 ) {
 }

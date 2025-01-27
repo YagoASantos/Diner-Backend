@@ -1,7 +1,6 @@
 package com.challenge.devfullstack.diner.service;
 
 import com.challenge.devfullstack.diner.model.*;
-import com.challenge.devfullstack.diner.model.drink.Drink;
 import com.challenge.devfullstack.diner.model.order.OrderDrink;
 import com.challenge.devfullstack.diner.model.order.Order;
 import com.challenge.devfullstack.diner.model.order.OrderHamburger;
@@ -39,7 +38,7 @@ public class OrderService {
         Order order = new OrderBuilder(dto).setHamburgers(convertHamburgersAndQuantitiesDtoToOrderHamburgers(dto.hamburgers()))
                         .setDrinks(convertHamburgersAndQuantitiesDtoToOrderDrinks(dto.drinks()))
                         .setObservations(createObservations(dto.observations()))
-                        .setClient(clientService.findById(dto.clientId()))
+                        .setClient(clientService.findById(dto.client()))
                         .build();
         return repository.save(order);
     }
@@ -51,7 +50,7 @@ public class OrderService {
     }
 
     private OrderHamburger createNewOrderHamburger(ItemAndQuantityDto dto) {
-        return new OrderHamburger(hamburgerService.findById(dto.itemId()), dto.quantity());
+        return new OrderHamburger(hamburgerService.findById(dto.code()), dto.quantity());
     }
 
     private List<OrderDrink> convertHamburgersAndQuantitiesDtoToOrderDrinks(List<ItemAndQuantityDto> dto) {
@@ -61,13 +60,18 @@ public class OrderService {
     }
 
     private OrderDrink createNewOrderDrink(ItemAndQuantityDto dto) {
-        return new OrderDrink(drinkService.findById(dto.itemId()), dto.quantity());
+        return new OrderDrink(drinkService.findById(dto.code()), dto.quantity());
     }
 
     private List<Observation> createObservations(List<ObservationDto> dto) {
         return dto.stream()
-                .map(observation -> new Observation(observation.message()))
-                .toList();
+                .map(observation -> {
+                    Observation obs = null;
+                    if (observation != null) {
+                        obs = new Observation(observation.message());
+                    }
+                    return obs;
+                }).toList();
     }
 
     public Order findById(Long id) {
