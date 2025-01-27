@@ -17,6 +17,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Getter
+@ToString
 public class Hamburger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

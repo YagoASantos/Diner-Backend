@@ -32,9 +32,7 @@ public class HamburgerService {
     }
 
     private List<Ingredient> findIngredientsById(List<Long> ingredientsId) {
-        return ingredientsId.stream()
-                .map(ingredientId -> ingredientService.findById(ingredientId))
-                .toList();
+        return ingredientService.findAllById(ingredientsId);
     }
 
     public Hamburger findById(Long id) {
@@ -56,6 +54,7 @@ public class HamburgerService {
             hamburger.setIngredients(findIngredientsById(dto.ingredients()));
         }
         hamburger.setChanges(dto);
+        System.out.println(hamburger);
         return repository.save(hamburger);
     }
 

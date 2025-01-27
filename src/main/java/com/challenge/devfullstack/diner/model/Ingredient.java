@@ -3,10 +3,7 @@ package com.challenge.devfullstack.diner.model;
 import com.challenge.devfullstack.diner.util.dto.ingredient.IngredientDto;
 import com.challenge.devfullstack.diner.util.dto.ingredient.PostIngredientDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -18,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Getter
+@ToString(exclude = {"hamburgers"})
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -47,4 +47,8 @@ public class IngredientService {
             repository.save(deletedIngredient);
         }
     }
+
+    public List<Ingredient> findAllById(List<Long> ingredientsId) {
+        return repository.findAllById(ingredientsId);
+    }
 }
