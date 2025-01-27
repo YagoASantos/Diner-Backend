@@ -35,6 +35,7 @@ public class ClientService {
     public void delete(Long id) {
         Client client = findById(id);
         client.delete();
+        repository.save(client);
     }
 
     public Page<ClientDto> findAll(Pageable page) {

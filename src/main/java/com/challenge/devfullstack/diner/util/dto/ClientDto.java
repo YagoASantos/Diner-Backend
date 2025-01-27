@@ -4,7 +4,7 @@ package com.challenge.devfullstack.diner.util.dto;
 import com.challenge.devfullstack.diner.model.Client;
 
 public record ClientDto(
-        Long id,
+        Long code,
         String name,
         AddressDto address,
         String phone

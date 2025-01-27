@@ -28,7 +28,7 @@ public class IngredientController {
     @Transactional
     public ResponseEntity create(@RequestBody @Valid PostIngredientDto dto, UriComponentsBuilder uriBuilder) {
         Ingredient createdIngredient = service.create(dto);
-        URI uri = uriBuilder.path("/ingredients/{id}").buildAndExpand(createdIngredient.getId()).toUri();
+        URI uri = uriBuilder.path("/ingredients/{code}").buildAndExpand(createdIngredient.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
@@ -37,7 +37,7 @@ public class IngredientController {
         return ResponseEntity.ok(service.findAll(page));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{code}")
     public ResponseEntity<IngredientDto> findById(@PathVariable Long id) {
         return ResponseEntity.ok(new IngredientDto(service.findById(id)));
     }
@@ -49,13 +49,13 @@ public class IngredientController {
         return ResponseEntity.ok(service.findByDescription(description, page));
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{code}")
     @Transactional
     public ResponseEntity<IngredientDto> update(@PathVariable Long id, @RequestBody @Valid IngredientDto dto) {
         return ResponseEntity.ok(new IngredientDto(service.update(id, dto)));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{code}")
     @Transactional
     public ResponseEntity delete(@PathVariable Long id) {
         service.delete(id);

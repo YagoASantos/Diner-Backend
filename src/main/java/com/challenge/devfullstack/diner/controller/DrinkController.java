@@ -28,7 +28,7 @@ public class DrinkController {
     @Transactional
     public ResponseEntity create(@RequestBody @Valid PostDrinkDto dto, UriComponentsBuilder uriBuilder) {
         Drink createdDrink = service.create(dto);
-        URI uri = uriBuilder.path("/drinks/{id}").buildAndExpand(createdDrink.getId()).toUri();
+        URI uri = uriBuilder.path("/drinks/{code}").buildAndExpand(createdDrink.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
@@ -37,7 +37,7 @@ public class DrinkController {
         return ResponseEntity.ok(service.findAll(page));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{code}")
     public ResponseEntity<DrinkDto> findById(@PathVariable Long id) {
         return ResponseEntity.ok(new DrinkDto(service.findById(id)));
     }
@@ -47,13 +47,13 @@ public class DrinkController {
         return ResponseEntity.ok(service.findByDescription(description));
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{code}")
     @Transactional
     public ResponseEntity<DrinkDto> update(@PathVariable Long id, @RequestBody @Valid DrinkDto dto) {
         return ResponseEntity.ok(new DrinkDto(service.update(id, dto)));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{code}")
     @Transactional
     public ResponseEntity delete(@PathVariable Long id) {
         service.delete(id);

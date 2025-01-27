@@ -28,7 +28,7 @@ public class ClientController {
     @Transactional
     public ResponseEntity create(@RequestBody @Valid PostClientDto dto, UriComponentsBuilder uriBuilder) {
         Client client = service.create(dto);
-        URI uri = uriBuilder.path("/clients/{id}").buildAndExpand(client.getId()).toUri();
+        URI uri = uriBuilder.path("/clients/{code}").buildAndExpand(client.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
@@ -37,7 +37,7 @@ public class ClientController {
         return ResponseEntity.ok(service.findAll(page));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{code}")
     public ResponseEntity<ClientDto> findById(@PathVariable Long id) {
         return ResponseEntity.ok(new ClientDto(service.findById(id)));
     }
@@ -45,5 +45,11 @@ public class ClientController {
     @GetMapping("/name/{name}")
     public ResponseEntity<List<ClientDto>> findByName(@PathVariable String name) {
         return ResponseEntity.ok(service.findByName(name));
+    }
+
+    @DeleteMapping("/{code}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

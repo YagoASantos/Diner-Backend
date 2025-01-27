@@ -3,15 +3,13 @@ package com.challenge.devfullstack.diner.util.dto.order;
 import com.challenge.devfullstack.diner.model.order.Order;
 import com.challenge.devfullstack.diner.util.dto.ClientDto;
 import com.challenge.devfullstack.diner.util.dto.ObservationDto;
-import com.challenge.devfullstack.diner.util.dto.drink.DrinkDto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public record OrderDto(
-        Long id,
+        Long code,
         String description,
         ClientDto client,
         List<HamburgerOrderDto> hamburgers,

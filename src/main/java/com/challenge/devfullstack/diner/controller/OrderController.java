@@ -29,11 +29,11 @@ public class OrderController {
     @Transactional
     public ResponseEntity create(@RequestBody @Valid PostOrderDto dto, UriComponentsBuilder uriBuilder) {
         Order order = service.create(dto);
-        URI uri = uriBuilder.path("/orders/{id}").buildAndExpand(order.getId()).toUri();
+        URI uri = uriBuilder.path("/orders/{code}").buildAndExpand(order.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{code}")
     public ResponseEntity<OrderDto> findById(@PathVariable Long id) {
         Order order = service.findById(id);
         return ResponseEntity.ok(new OrderDto(order, service.calculateTotalPrice(order)));

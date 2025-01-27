@@ -29,11 +29,11 @@ public class HamburgerController {
     @Transactional
     public ResponseEntity create(@RequestBody @Valid PostHamburgerDto dto, UriComponentsBuilder uriBuilder) {
         Hamburger createdHamburger = service.create(dto);
-        URI uri = uriBuilder.path("/hamburgers/{id}").buildAndExpand(createdHamburger.getId()).toUri();
+        URI uri = uriBuilder.path("/hamburgers/{code}").buildAndExpand(createdHamburger.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{code}")
     public ResponseEntity<HamburgerDto> findById(@PathVariable Long id) {
         return ResponseEntity.ok(new HamburgerDto(service.findById(id)));
     }
@@ -48,13 +48,13 @@ public class HamburgerController {
         return ResponseEntity.ok(service.findAll(page));
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{code}")
     @Transactional
     public ResponseEntity<HamburgerDto> update(@PathVariable Long id, @RequestBody @Valid PatchHamburgerDto dto) {
         return ResponseEntity.ok(new HamburgerDto(service.update(id, dto)));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{code}")
     @Transactional
     public ResponseEntity delete(@PathVariable Long id) {
         service.delete(id);
